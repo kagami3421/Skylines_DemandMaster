@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DEBUG
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -70,7 +72,7 @@ namespace DemandMaster
 
             button.playAudioEvents = true;
 
-            button.transformPosition = new Vector3(-1.65f, 0.97f);
+            button.transformPosition = new Vector3(-1f, 0.97f);
 
             button.eventClick += button_eventClick;
 
@@ -102,7 +104,8 @@ namespace DemandMaster
             else
                 bIsUIOpen = true;
 
-            /*ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
+#if DEBUG
+            ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
             ModDebug.Log("C:" + ZoneManager.instance.m_commercialDemand);
             ModDebug.Log("I:" + ZoneManager.instance.m_workplaceDemand);
 
@@ -110,7 +113,8 @@ namespace DemandMaster
             ModDebug.Log("AC:" + ZoneManager.instance.m_actualCommercialDemand);
             ModDebug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
 
-            ModDebug.Log(bIsUIOpen);*/
+            ModDebug.Log(bIsUIOpen);
+#endif
 
             toolUI.EnableUI = bIsUIOpen;
         }

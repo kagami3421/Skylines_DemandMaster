@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define DEBUG
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +45,10 @@ namespace DemandMaster
             }
 
             _manager = ZoneManager.instance;
+
+#if DEBUG
+            ModDebug.Log(_manager);
+#endif
         }
 
         void OnGUI()
