@@ -1,4 +1,4 @@
-﻿#define DEBUG
+﻿//#define DEBUG
 
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,8 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
+
+    #region Mod
     public class ModMain : IUserMod
     {
         public string Description
@@ -22,89 +24,107 @@ namespace DemandMaster
             get { return "Demand Master"; }
         }
     }
+    #endregion
 
     public class DemandMaster : LoadingExtensionBase
     {
 
         private bool bIsUIOpen = false;
 
-        private ToolUI toolUI;
+        private MainUIPanel _DemandPanel;
+
+        private UIButton _DemandBtn;
+
+        private LoadMode _mode;
+
+        private UIView _view;
 
         public override void OnLevelLoaded(LoadMode mode)
         {
             base.OnLevelLoaded(mode);
 
-            if (mode == LoadMode.LoadGame || mode == LoadMode.NewGame)
-            {
-                CreateButton();
-                RegisterUI();
-            }
+            _mode = mode;
+
+            _view = UIView.GetAView();
+
+            if (_mode != LoadMode.LoadGame && _mode != LoadMode.NewGame)
+                return;
+
+            HookToMainToolBar();
         }
 
         public override void OnLevelUnloading()
         {
             base.OnLevelUnloading();
 
+            if (_mode != LoadMode.LoadGame && _mode != LoadMode.NewGame)
+                return;
+
             UnRegistorUI();
         }
 
-        private UIButton CreateButton()
+        private void HookToMainToolBar()
         {
-            UIView uiView = UIView.GetAView();
+            if (_view == null)
+            {
+                ModDebug.Error("Can't Find UI View !");
+                return;
+            }
 
-            UIButton button = (UIButton)uiView.AddUIComponent(typeof(UIButton));
+            UIPanel _infoPanel = (UIPanel)_view.FindUIComponent("InfoPanel");
 
-            button.text = "Demand Master";
+            _DemandBtn = _infoPanel.AddUIComponent<UIButton>();
 
-            button.width = 120;
-            button.height = 40;
+            RegisterUI();
+            CreateButton(ref _DemandBtn);
+        }
 
-            button.normalBgSprite = "ButtonMenu";
-            button.disabledBgSprite = "ButtonMenuDisabled";
-            button.hoveredBgSprite = "ButtonMenuHovered";
-            button.focusedBgSprite = "ButtonMenuFocused";
-            button.pressedBgSprite = "ButtonMenuPressed";
-            button.textColor = new Color32(255, 255, 255, 255);
-            button.disabledTextColor = new Color32(7, 7, 7, 255);
-            button.hoveredTextColor = new Color32(7, 132, 255, 255);
-            button.focusedTextColor = new Color32(255, 255, 255, 255);
-            button.pressedTextColor = new Color32(30, 30, 44, 255);
+        private void CreateButton(ref UIButton _btn)
+        {
+            _btn.width = 70;
+            _btn.height = 43;
+            _btn.name = "DemandToggleButton";
 
-            button.playAudioEvents = true;
+            _btn.pressedBgSprite = "InfoPanelRCIOIndicator";
 
-            button.transformPosition = new Vector3(-1f, 0.97f);
+            _btn.pressedColor = new Color32(25, 25, 25, 255);
 
-            button.eventClick += button_eventClick;
+            _btn.relativePosition = new Vector3(641.5f, 0f);
 
-            return button;
+            _btn.eventClick += button_eventClick;
         }
 
         void RegisterUI()
         {
-            GameObject gameController = GameObject.FindWithTag("GameController");
-            if (gameController)
-                toolUI = gameController.AddComponent<ToolUI>();
+            if (_view == null)
+            {
+                ModDebug.Error("Can't Find UI View !");
+                return;
+            }
+                
+
+            GameObject _uiObj = new GameObject("DemandPanel");
+            _DemandPanel = _uiObj.AddComponent<MainUIPanel>();
+            _DemandPanel.transform.parent = _view.transform;
         }
 
         void UnRegistorUI()
         {
-            GameObject gameController = GameObject.FindWithTag("GameController");
-            if (gameController)
-            {
-                ToolUI _ui = gameController.GetComponent<ToolUI>();
-                if (_ui)
-                    GameObject.Destroy(_ui);
-            }
+            if (_DemandPanel)
+                GameObject.Destroy(_DemandPanel.gameObject);
+            if (_DemandBtn)
+                GameObject.Destroy(_DemandBtn.gameObject);
         }
 
         void button_eventClick(UIComponent component, UIMouseEventParameter eventParam)
         {
+
             if (bIsUIOpen)
                 bIsUIOpen = false;
             else
                 bIsUIOpen = true;
 
-#if DEBUG
+#if !DEBUG
             ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
             ModDebug.Log("C:" + ZoneManager.instance.m_commercialDemand);
             ModDebug.Log("I:" + ZoneManager.instance.m_workplaceDemand);
@@ -112,11 +132,13 @@ namespace DemandMaster
             ModDebug.Log("AR:" + ZoneManager.instance.m_actualResidentialDemand);
             ModDebug.Log("AC:" + ZoneManager.instance.m_actualCommercialDemand);
             ModDebug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
-
-            ModDebug.Log(bIsUIOpen);
 #endif
 
-            toolUI.EnableUI = bIsUIOpen;
+            if (_DemandPanel)
+                _DemandPanel.isVisible = bIsUIOpen;
+            else
+                ModDebug.Error("Demand Pane Vairable is NULL !");
+
         }
     }
 }
