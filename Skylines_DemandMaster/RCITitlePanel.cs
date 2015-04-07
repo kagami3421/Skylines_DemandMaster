@@ -7,7 +7,7 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class TitlePanel : UIPanel
+    public class RCITitlePanel5 : UIPanel
     {
         private UILabel _TitileText;
 

@@ -7,7 +7,7 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class RCISlider : UISlider
+    public class RCISlider5 : UISlider
     {
         //private UISprite _FillObj;
 

@@ -31,7 +31,9 @@ namespace DemandMaster
 
         private bool bIsUIOpen = false;
 
-        private MainUIPanel _DemandPanel;
+        private GameObject _DemandPanelGO;
+
+        private RCIMainUIPanel5 _DemandPanel;
 
         private UIButton _DemandBtn;
 
@@ -43,14 +45,14 @@ namespace DemandMaster
         {
             base.OnLevelLoaded(mode);
 
+            if (mode != LoadMode.LoadGame && mode != LoadMode.NewGame)
+                return;
+
             _mode = mode;
 
             _view = UIView.GetAView();
 
-            if (_mode != LoadMode.LoadGame && _mode != LoadMode.NewGame)
-                return;
-
-            HookToMainToolBar();
+            RegisterUI();
         }
 
         public override void OnLevelUnloading()
@@ -71,11 +73,9 @@ namespace DemandMaster
                 return;
             }
 
-            UIPanel _infoPanel = (UIPanel)_view.FindUIComponent("InfoPanel");
+            UISprite _demandBack = (UISprite)_view.FindUIComponent("DemandBack");
 
-            _DemandBtn = _infoPanel.AddUIComponent<UIButton>();
-
-            RegisterUI();
+            _DemandBtn = _demandBack.AddUIComponent<UIButton>();
             CreateButton(ref _DemandBtn);
         }
 
@@ -89,7 +89,7 @@ namespace DemandMaster
 
             _btn.pressedColor = new Color32(25, 25, 25, 255);
 
-            _btn.relativePosition = new Vector3(641.5f, 0f);
+            _btn.relativePosition = new Vector3(-2.25f, 0f , 0f);
 
             _btn.eventClick += button_eventClick;
         }
@@ -101,11 +101,15 @@ namespace DemandMaster
                 ModDebug.Error("Can't Find UI View !");
                 return;
             }
-                
 
-            GameObject _uiObj = new GameObject("DemandPanel");
-            _DemandPanel = _uiObj.AddComponent<MainUIPanel>();
+            _DemandPanelGO = new GameObject("DemandPanel");
+
+            _DemandPanel = _DemandPanelGO.AddComponent<RCIMainUIPanel5>();
+
             _DemandPanel.transform.parent = _view.transform;
+
+
+            HookToMainToolBar();
         }
 
         void UnRegistorUI()
@@ -118,11 +122,7 @@ namespace DemandMaster
 
         void button_eventClick(UIComponent component, UIMouseEventParameter eventParam)
         {
-
-            if (bIsUIOpen)
-                bIsUIOpen = false;
-            else
-                bIsUIOpen = true;
+            bIsUIOpen = !bIsUIOpen;
 
 #if !DEBUG
             ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
@@ -134,10 +134,10 @@ namespace DemandMaster
             ModDebug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
 #endif
 
-            if (_DemandPanel)
+            //if (_DemandPanel)
                 _DemandPanel.isVisible = bIsUIOpen;
-            else
-                ModDebug.Error("Demand Pane Vairable is NULL !");
+            //else
+                //ModDebug.Error("Demand Panel Vairable is NULL !");
 
         }
     }

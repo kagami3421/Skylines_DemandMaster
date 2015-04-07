@@ -9,11 +9,11 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class RCIAdjustRow : UIPanel
+    public class RCIAdjustRow5 : UIPanel
     {
-        private RCISlider _RCIValueSlider;
+        private RCISlider5 _RCIValueSlider;
 
-        private RCICheckBox _RCIFixed;
+        private RCICheckBox5 _RCIFixed;
 
         private UILabel _RCIFixedText;
 
@@ -33,9 +33,9 @@ namespace DemandMaster
         {
             base.Awake();
 
-            _RCIValueSlider = AddUIComponent<RCISlider>();
+            _RCIValueSlider = AddUIComponent<RCISlider5>();
 
-            _RCIFixed = AddUIComponent<RCICheckBox>();
+            _RCIFixed = AddUIComponent<RCICheckBox5>();
 
             _RCIFixedText = AddUIComponent<UILabel>();
 

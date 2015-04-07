@@ -7,8 +7,8 @@
     <ProjectGuid>{CB31FDA8-985E-4021-87C4-D282FC09246B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Skylines_DemandMaster</RootNamespace>
-    <AssemblyName>Skylines_DemandMaster</AssemblyName>
+    <RootNamespace>DemandMaster</RootNamespace>
+    <AssemblyName>DemandMaster</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeatureUtil.cs" />
-    <Compile Include="MainUIPanel.cs" />
+    <Compile Include="RCIMainUIPanel.cs" />
     <Compile Include="ModDebug.cs" />
     <Compile Include="ModMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,7 +66,7 @@
     <Compile Include="RCICheckBox.cs" />
     <Compile Include="RCISlider.cs" />
     <Compile Include="RCIViewRow.cs" />
-    <Compile Include="TitlePanel.cs" />
+    <Compile Include="RCITitlePanel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

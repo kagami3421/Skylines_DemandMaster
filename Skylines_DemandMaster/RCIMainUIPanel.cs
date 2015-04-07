@@ -9,20 +9,17 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class MainUIPanel : UIPanel
+    public class RCIMainUIPanel5 : UIPanel
     {
-        private TitlePanel TitlePanel;
+        private RCITitlePanel5 TitlePanel;
 
         private List<GameObject> _ViewRowArray;
         private List<GameObject> _AdjustRowArray;
-
-        //private RCIType _types;
 
         public override void Start()
         {
             base.Start();
 
-            
             // Set UI
             
             backgroundSprite = "MenuPanel";
@@ -45,13 +42,13 @@ namespace DemandMaster
             _ViewRowArray = new List<GameObject>();
             _AdjustRowArray = new List<GameObject>();
 
-            TitlePanel = AddUIComponent<TitlePanel>();
+            TitlePanel = AddUIComponent<RCITitlePanel5>();
             TitlePanel.ParentUI = this;
 
             foreach (RCIType _type in Enum.GetValues(typeof(RCIType)))
             {
                 GameObject _singleRow = new GameObject("ViewRow" + _type.ToString());
-                RCIViewRow _rowUI = _singleRow.AddComponent<RCIViewRow>();
+                RCIViewRow5 _rowUI = _singleRow.AddComponent<RCIViewRow5>();
 
                 _rowUI.ViewRCIType = _type;
 
@@ -63,7 +60,7 @@ namespace DemandMaster
             foreach (RCIType _type in Enum.GetValues(typeof(RCIType)))
             {
                 GameObject _singleRow = new GameObject("AdjustRow" + _type.ToString());
-                RCIAdjustRow _rowUI = _singleRow.AddComponent<RCIAdjustRow>();
+                RCIAdjustRow5 _rowUI = _singleRow.AddComponent<RCIAdjustRow5>();
 
                 _rowUI.AdjustRCIType = _type;
 
