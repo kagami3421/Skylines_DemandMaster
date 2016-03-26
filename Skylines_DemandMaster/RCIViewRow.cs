@@ -14,7 +14,7 @@ namespace DemandMaster
         Industrial
     }
 
-    public class RCIViewRow5 : UIPanel
+    public class Kagami_RCIViewRow : UIPanel
     {
         private UILabel _ViewDescription;
 

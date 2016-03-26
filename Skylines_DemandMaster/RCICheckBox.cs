@@ -7,7 +7,7 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class RCICheckBox5 : UISprite
+    public class Kagami_RCICheckBox : UISprite
     {
         public bool IsChecked { get; set; }
 

@@ -16,7 +16,7 @@ namespace DemandMaster
     {
         public string Description
         {
-            get { return "View or Change RCI Demand"; }
+            get { return "View or Change RCI Demand. Author:Kagami"; }
         }
 
         public string Name
@@ -33,7 +33,7 @@ namespace DemandMaster
 
         private GameObject _DemandPanelGO;
 
-        private RCIMainUIPanel5 _DemandPanel;
+        private Kagami_RCIMainUIPanel _DemandPanel;
 
         private UIButton _DemandBtn;
 
@@ -104,7 +104,7 @@ namespace DemandMaster
 
             _DemandPanelGO = new GameObject("DemandPanel");
 
-            _DemandPanel = _DemandPanelGO.AddComponent<RCIMainUIPanel5>();
+            _DemandPanel = _DemandPanelGO.AddComponent<Kagami_RCIMainUIPanel>();
 
             _DemandPanel.transform.parent = _view.transform;
 

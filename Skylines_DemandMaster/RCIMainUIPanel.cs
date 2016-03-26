@@ -9,9 +9,9 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class RCIMainUIPanel5 : UIPanel
+    public class Kagami_RCIMainUIPanel : UIPanel
     {
-        private RCITitlePanel5 TitlePanel;
+        private Kagami_RCITitlePanel TitlePanel;
 
         private List<GameObject> _ViewRowArray;
         private List<GameObject> _AdjustRowArray;
@@ -42,17 +42,17 @@ namespace DemandMaster
             _ViewRowArray = new List<GameObject>();
             _AdjustRowArray = new List<GameObject>();
 
-            TitlePanel = AddUIComponent<RCITitlePanel5>();
+            TitlePanel = AddUIComponent<Kagami_RCITitlePanel>();
             TitlePanel.ParentUI = this;
 
             foreach (RCIType _type in Enum.GetValues(typeof(RCIType)))
             {
                 GameObject _singleRow = new GameObject("ViewRow" + _type.ToString());
-                RCIViewRow5 _rowUI = _singleRow.AddComponent<RCIViewRow5>();
+                Kagami_RCIViewRow _rowUI = _singleRow.AddComponent<Kagami_RCIViewRow>();
 
                 _rowUI.ViewRCIType = _type;
 
-                this.AttachUIComponent(_singleRow);
+                AttachUIComponent(_singleRow);
 
                 _ViewRowArray.Add(_singleRow);
             }
@@ -60,7 +60,7 @@ namespace DemandMaster
             foreach (RCIType _type in Enum.GetValues(typeof(RCIType)))
             {
                 GameObject _singleRow = new GameObject("AdjustRow" + _type.ToString());
-                RCIAdjustRow5 _rowUI = _singleRow.AddComponent<RCIAdjustRow5>();
+                Kagami_RCIAdjustRow _rowUI = _singleRow.AddComponent<Kagami_RCIAdjustRow>();
 
                 _rowUI.AdjustRCIType = _type;
 
@@ -79,7 +79,7 @@ namespace DemandMaster
                         break;
                 }
 
-                this.AttachUIComponent(_singleRow);
+                AttachUIComponent(_singleRow);
 
                 _AdjustRowArray.Add(_singleRow);
             }

@@ -7,6 +7,3 @@ Demand Control Mod for Cities:Skylines
 * View Current RCI Demand
 * Adjust RCI Demand
 * Fix RCI Demand Value
-
-## TODO：
-* More Better UI

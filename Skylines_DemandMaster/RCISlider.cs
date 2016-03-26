@@ -7,22 +7,13 @@ using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class RCISlider5 : UISlider
+    public class Kagami_RCISlider : UISlider
     {
-        //private UISprite _FillObj;
-
         private UISprite _ThumbObj;
 
         public override void Start()
         {
             base.Start();
-
-            //_FillObj = AddUIComponent<UISprite>();
-            //_FillObj.spriteName = "LevelBarForeground";
-            //_FillObj.size = new Vector2(200, 20);
-            //_FillObj.fillDirection = UIFillDirection.Horizontal;
-            //_FillObj.fillAmount = 1f;
-
 
             _ThumbObj = AddUIComponent<UISprite>();
             _ThumbObj.spriteName = "SliderBudget";
@@ -31,9 +22,7 @@ namespace DemandMaster
 
             backgroundSprite = "LevelBarBackground";
             canFocus = true;
-            //fillIndicatorObject = _FillObj;
-            //fillMode = UIFillMode.Fill;
-            
+
             maxValue = 100f;
             minValue = 0f;
             orientation = UIOrientation.Horizontal;
