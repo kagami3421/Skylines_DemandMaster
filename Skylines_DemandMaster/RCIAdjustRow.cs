@@ -1,19 +1,13 @@
-﻿//#define DEBUG
-
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ColossalFramework;
+﻿using UnityEngine;
 using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class Kagami_RCIAdjustRow : UIPanel
+    public class RCIAdjustRow : UIPanel
     {
-        private Kagami_RCISlider _RCIValueSlider;
+        private RCISlider _RCIValueSlider;
 
-        private Kagami_RCICheckBox _RCIFixed;
+        private RCICheckBox _RCIFixed;
 
         private UILabel _RCIFixedText;
 
@@ -33,9 +27,9 @@ namespace DemandMaster
         {
             base.Awake();
 
-            _RCIValueSlider = AddUIComponent<Kagami_RCISlider>();
+            _RCIValueSlider = AddUIComponent<RCISlider>();
 
-            _RCIFixed = AddUIComponent<Kagami_RCICheckBox>();
+            _RCIFixed = AddUIComponent<RCICheckBox>();
 
             _RCIFixedText = AddUIComponent<UILabel>();
 
@@ -62,7 +56,7 @@ namespace DemandMaster
         {
             FeatureUtil.SetRCIValue(_type, (int)value);
 
-#if !DEBUG
+#if DEBUG
             ModDebug.Log(_type.ToString() + "------" +value.ToString());
 #endif
         }

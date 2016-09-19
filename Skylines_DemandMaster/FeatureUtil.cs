@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿#define HARD
+
 using ColossalFramework;
 
 namespace DemandMaster
@@ -36,19 +35,25 @@ namespace DemandMaster
                 case RCIType.Residential:
                     {
                         _ZoneManager.m_residentialDemand = value;
+#if HARD
                         _ZoneManager.m_actualResidentialDemand = value;
+#endif
                     }
                     break;
                 case RCIType.Commercial:
                     {
+#if HARD
                         _ZoneManager.m_actualCommercialDemand = value;
+#endif
                         _ZoneManager.m_commercialDemand = value;
                     }
                     break;
                 case RCIType.Industrial:
                     {
                         _ZoneManager.m_workplaceDemand = value;
+#if HARD
                         _ZoneManager.m_actualWorkplaceDemand = value;
+#endif
                     }
                     break;
             }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ColossalFramework;
-using ColossalFramework.UI;
+﻿using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class Kagami_RCICheckBox : UISprite
+    public class RCICheckBox : UISprite
     {
         public bool IsChecked { get; set; }
 

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ColossalFramework;
+﻿using UnityEngine;
 using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class Kagami_RCITitlePanel : UIPanel
+    public class RCITitlePanel : UIPanel
     {
         private UILabel _TitileText;
 

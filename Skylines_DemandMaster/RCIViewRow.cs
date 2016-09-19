@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ColossalFramework;
+﻿using UnityEngine;
 using ColossalFramework.UI;
 
 namespace DemandMaster
@@ -14,7 +10,7 @@ namespace DemandMaster
         Industrial
     }
 
-    public class Kagami_RCIViewRow : UIPanel
+    public class RCIViewRow : UIPanel
     {
         private UILabel _ViewDescription;
 

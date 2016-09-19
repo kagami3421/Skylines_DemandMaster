@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-using ColossalFramework;
+﻿using UnityEngine;
 using ColossalFramework.UI;
 
 namespace DemandMaster
 {
-    public class Kagami_RCISlider : UISlider
+    public class RCISlider : UISlider
     {
         private UISprite _ThumbObj;
 

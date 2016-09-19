@@ -1,11 +1,5 @@
-﻿//#define DEBUG
-
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 using ICities;
-using ColossalFramework;
 using ColossalFramework.UI;
 
 namespace DemandMaster
@@ -28,18 +22,35 @@ namespace DemandMaster
 
     public class DemandMaster : LoadingExtensionBase
     {
-
+        /// <summary>
+        /// Flag for checking DemandMaster UI is open.
+        /// </summary>
         private bool bIsUIOpen = false;
 
-        private GameObject _DemandPanelGO;
+        /// <summary>
+        /// The gameobject of DemandMaster.
+        /// </summary>
+        private GameObject oDemandPanel;
 
-        private Kagami_RCIMainUIPanel _DemandPanel;
+        /// <summary>
+        /// The main UI of DemandMaster.
+        /// </summary>
+        private RCIMainUIPanel oDemandPanelComponent;
 
-        private UIButton _DemandBtn;
+        /// <summary>
+        /// The button UI for show/hide DemandMaster.
+        /// </summary>
+        private UIButton oDemandTriggerButton;
 
-        private LoadMode _mode;
+        /// <summary>
+        /// Store the mode of loading type. 
+        /// </summary>
+        private LoadMode eLoadMode;
 
-        private UIView _view;
+        /// <summary>
+        /// The Cities skylines main UI.
+        /// </summary>
+        private UIView oGameNativeUI;
 
         public override void OnLevelLoaded(LoadMode mode)
         {
@@ -48,65 +59,61 @@ namespace DemandMaster
             if (mode != LoadMode.LoadGame && mode != LoadMode.NewGame)
                 return;
 
-            _mode = mode;
+            eLoadMode = mode;
 
-            _view = UIView.GetAView();
+            oGameNativeUI = UIView.GetAView();
 
-            RegisterUI();
+            if (oGameNativeUI != null)
+                RegisterUI();
+            else
+                ModDebug.Error("Can't Find UI View !");
         }
 
         public override void OnLevelUnloading()
         {
             base.OnLevelUnloading();
 
-            if (_mode != LoadMode.LoadGame && _mode != LoadMode.NewGame)
+            if (eLoadMode != LoadMode.LoadGame && eLoadMode != LoadMode.NewGame)
                 return;
 
             UnRegistorUI();
         }
 
+        /********** Custom Methods **********/
+
         private void HookToMainToolBar()
         {
-            if (_view == null)
-            {
-                ModDebug.Error("Can't Find UI View !");
-                return;
-            }
+            UISprite _demandBack = (UISprite)oGameNativeUI.FindUIComponent("DemandBack");
 
-            UISprite _demandBack = (UISprite)_view.FindUIComponent("DemandBack");
-
-            _DemandBtn = _demandBack.AddUIComponent<UIButton>();
-            CreateButton(ref _DemandBtn);
+            oDemandTriggerButton = _demandBack.AddUIComponent<UIButton>();
+            CreateButton(ref oDemandTriggerButton);
         }
 
-        private void CreateButton(ref UIButton _btn)
+        private void CreateButton(ref UIButton btn)
         {
-            _btn.width = 70;
-            _btn.height = 43;
-            _btn.name = "DemandToggleButton";
+            btn.width = 70;
+            btn.height = 43;
+            btn.name = "DemandToggleButton";
 
-            _btn.pressedBgSprite = "InfoPanelRCIOIndicator";
+            btn.pressedBgSprite = "InfoPanelRCIOIndicator";
 
-            _btn.pressedColor = new Color32(25, 25, 25, 255);
+            btn.pressedColor = new Color32(25, 25, 25, 255);
 
-            _btn.relativePosition = new Vector3(-2.25f, 0f , 0f);
+            btn.relativePosition = new Vector3(-2.25f, 0f , 0f);
 
-            _btn.eventClick += button_eventClick;
+            btn.eventClick += button_eventClick;
         }
 
+        /// <summary>
+        /// Hook DemandMaster to native UI.
+        /// </summary>
         void RegisterUI()
         {
-            if (_view == null)
-            {
-                ModDebug.Error("Can't Find UI View !");
-                return;
-            }
+            oDemandPanel = new GameObject("DemandPanel");
 
-            _DemandPanelGO = new GameObject("DemandPanel");
+            oDemandPanelComponent = oDemandPanel.AddComponent<RCIMainUIPanel>();
 
-            _DemandPanel = _DemandPanelGO.AddComponent<Kagami_RCIMainUIPanel>();
-
-            _DemandPanel.transform.parent = _view.transform;
+            oDemandPanelComponent.transform.parent = oGameNativeUI.transform;
 
 
             HookToMainToolBar();
@@ -114,17 +121,17 @@ namespace DemandMaster
 
         void UnRegistorUI()
         {
-            if (_DemandPanel)
-                GameObject.Destroy(_DemandPanel.gameObject);
-            if (_DemandBtn)
-                GameObject.Destroy(_DemandBtn.gameObject);
+            if (oDemandPanelComponent)
+                GameObject.Destroy(oDemandPanelComponent.gameObject);
+            if (oDemandTriggerButton)
+                GameObject.Destroy(oDemandTriggerButton.gameObject);
         }
 
         void button_eventClick(UIComponent component, UIMouseEventParameter eventParam)
         {
             bIsUIOpen = !bIsUIOpen;
 
-#if !DEBUG
+#if DEBUG
             ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
             ModDebug.Log("C:" + ZoneManager.instance.m_commercialDemand);
             ModDebug.Log("I:" + ZoneManager.instance.m_workplaceDemand);
@@ -134,11 +141,7 @@ namespace DemandMaster
             ModDebug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
 #endif
 
-            //if (_DemandPanel)
-                _DemandPanel.isVisible = bIsUIOpen;
-            //else
-                //ModDebug.Error("Demand Panel Vairable is NULL !");
-
+            oDemandPanelComponent.isVisible = bIsUIOpen;
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ColossalFramework;
-
-namespace DemandMaster
+﻿namespace DemandMaster
 {
     public static class ModDebug
     {
