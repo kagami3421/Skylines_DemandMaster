@@ -40,7 +40,7 @@ namespace DemandMaster
         /// <summary>
         /// The button UI for show/hide DemandMaster.
         /// </summary>
-        private UIButton oDemandTriggerButton;
+        private RCIButton oDemandTriggerButton;
 
         /// <summary>
         /// Store the mode of loading type. 
@@ -85,22 +85,12 @@ namespace DemandMaster
         {
             UISprite _demandBack = (UISprite)oGameNativeUI.FindUIComponent("DemandBack");
 
-            oDemandTriggerButton = _demandBack.AddUIComponent<UIButton>();
+            oDemandTriggerButton = _demandBack.AddUIComponent<RCIButton>();
             CreateButton(ref oDemandTriggerButton);
         }
 
-        private void CreateButton(ref UIButton btn)
+        private void CreateButton(ref RCIButton btn)
         {
-            btn.width = 70;
-            btn.height = 43;
-            btn.name = "DemandToggleButton";
-
-            btn.pressedBgSprite = "InfoPanelRCIOIndicator";
-
-            btn.pressedColor = new Color32(25, 25, 25, 255);
-
-            btn.relativePosition = new Vector3(-2.25f, 0f , 0f);
-
             btn.eventClick += button_eventClick;
         }
 
@@ -114,7 +104,6 @@ namespace DemandMaster
             oDemandPanelComponent = oDemandPanel.AddComponent<RCIMainUIPanel>();
 
             oDemandPanelComponent.transform.parent = oGameNativeUI.transform;
-
 
             HookToMainToolBar();
         }
