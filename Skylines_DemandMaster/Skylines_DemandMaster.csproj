@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FeatureUtil.cs" />
+    <Compile Include="ModConfiguration.cs" />
     <Compile Include="RCIButton.cs" />
     <Compile Include="RCIMainUIPanel.cs" />
     <Compile Include="ModDebug.cs" />

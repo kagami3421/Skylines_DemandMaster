@@ -17,6 +17,33 @@ namespace DemandMaster
         {
             get { return "Demand Master"; }
         }
+
+        public void OnSettingsUI(UIHelperBase helper)
+        {
+            RCIButton.config = ModeConfigProcessor.Deserialize(RCIButton.configPath);
+            if (RCIButton.config == null)
+            {
+                RCIButton.config = new ModConfiguration();
+            }
+            RCIButton.SaveConfig();
+
+            UIHelperBase group = helper.AddGroup("Demand Master Settings");
+
+            group.AddCheckbox("Show RCI demand value on status bar", RCIButton.config.showDemandInBar, OnCheckShowDemandBar);
+            //group.AddCheckbox("Store RCI fixed demand value", RCIButton.config.storeDemand, OnCheckStoreFixedDemand);
+        }
+
+        private void OnCheckShowDemandBar(bool c)
+        {
+            RCIButton.config.showDemandInBar = c;
+            RCIButton.SaveConfig();
+        }
+
+        private void OnCheckStoreFixedDemand(bool c)
+        {
+            RCIButton.config.storeDemand = c;
+            RCIButton.SaveConfig();
+        }
     }
     #endregion
 
@@ -26,11 +53,6 @@ namespace DemandMaster
         /// Flag for checking DemandMaster UI is open.
         /// </summary>
         private bool bIsUIOpen = false;
-
-        /// <summary>
-        /// The gameobject of DemandMaster.
-        /// </summary>
-        private GameObject oDemandPanel;
 
         /// <summary>
         /// The main UI of DemandMaster.
@@ -52,6 +74,18 @@ namespace DemandMaster
         /// </summary>
         private UIView oGameNativeUI;
 
+        public override void OnCreated(ILoading loading)
+        {
+            base.OnCreated(loading);
+
+            RCIButton.config = ModeConfigProcessor.Deserialize(RCIButton.configPath);
+            if (RCIButton.config == null)
+            {
+                RCIButton.config = new ModConfiguration();
+            }
+            RCIButton.SaveConfig();
+        }
+
         public override void OnLevelLoaded(LoadMode mode)
         {
             base.OnLevelLoaded(mode);
@@ -64,7 +98,7 @@ namespace DemandMaster
             oGameNativeUI = UIView.GetAView();
 
             if (oGameNativeUI != null)
-                RegisterUI();
+                RegisterDemandUI();
             else
                 ModDebug.Error("Can't Find UI View !");
         }
@@ -94,26 +128,26 @@ namespace DemandMaster
             btn.eventClick += button_eventClick;
         }
 
-        /// <summary>
-        /// Hook DemandMaster to native UI.
-        /// </summary>
-        void RegisterUI()
-        {
-            oDemandPanel = new GameObject("DemandPanel");
-
-            oDemandPanelComponent = oDemandPanel.AddComponent<RCIMainUIPanel>();
-
-            oDemandPanelComponent.transform.parent = oGameNativeUI.transform;
-
-            HookToMainToolBar();
-        }
-
         void UnRegistorUI()
         {
             if (oDemandPanelComponent)
                 GameObject.Destroy(oDemandPanelComponent.gameObject);
             if (oDemandTriggerButton)
                 GameObject.Destroy(oDemandTriggerButton.gameObject);
+        }
+
+        void RegisterDemandUI()
+        {
+            GameObject oDemandPanel = new GameObject("DemandPanel");
+
+            if (oDemandPanel == null)
+                return;
+
+            oDemandPanelComponent = oDemandPanel.AddComponent<RCIMainUIPanel>();
+
+            oDemandPanelComponent.transform.parent = oGameNativeUI.transform;
+
+            HookToMainToolBar();
         }
 
         void button_eventClick(UIComponent component, UIMouseEventParameter eventParam)

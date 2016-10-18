@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kagami Workshop")]
 [assembly: AssemblyProduct("Skylines_DemandMaster")]
-[assembly: AssemblyCopyright("Kagami Copyright ©  2015")]
+[assembly: AssemblyCopyright("Kagami 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

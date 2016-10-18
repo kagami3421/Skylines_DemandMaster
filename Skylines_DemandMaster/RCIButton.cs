@@ -5,8 +5,12 @@ using System.Collections;
 
 namespace DemandMaster
 {
-    class RCIButton : UIButton
+    public class RCIButton : UIButton
     {
+        public static readonly string configPath = "DemandMasterConfig.xml";
+
+        public static ModConfiguration config;
+
         private UILabel ResidentialDemand;
         private UILabel CommercialDemand;
         private UILabel IndustrialDemand;
@@ -15,13 +19,21 @@ namespace DemandMaster
         private int CDemand;
         private int IDemand;
 
+        public static void SaveConfig()
+        {
+            ModeConfigProcessor.Serialize(configPath, config);
+        }
+
         public override void Awake()
         {
             base.Awake();
 
-            ResidentialDemand = AddUIComponent<UILabel>();
-            CommercialDemand = AddUIComponent<UILabel>();
-            IndustrialDemand = AddUIComponent<UILabel>();
+            if (config.showDemandInBar)
+            {
+                ResidentialDemand = AddUIComponent<UILabel>();
+                CommercialDemand = AddUIComponent<UILabel>();
+                IndustrialDemand = AddUIComponent<UILabel>();
+            }
         }
 
         public override void Start()
@@ -41,20 +53,26 @@ namespace DemandMaster
 
             relativePosition = new Vector3(-2.25f, 0f, 0f);
 
-            //Setup demand display text
-            AttachUIComponent(ResidentialDemand.gameObject);
-            ResidentialDemand.relativePosition = new Vector3(6, 15);
+            if (config.showDemandInBar)
+            {
+                //Setup demand display text
+                AttachUIComponent(ResidentialDemand.gameObject);
+                ResidentialDemand.relativePosition = new Vector3(6, 15);
 
-            AttachUIComponent(CommercialDemand.gameObject);
-            CommercialDemand.relativePosition = new Vector3(28, 15);
+                AttachUIComponent(CommercialDemand.gameObject);
+                CommercialDemand.relativePosition = new Vector3(28, 15);
 
-            AttachUIComponent(IndustrialDemand.gameObject);
-            IndustrialDemand.relativePosition = new Vector3(52, 15);
+                AttachUIComponent(IndustrialDemand.gameObject);
+                IndustrialDemand.relativePosition = new Vector3(52, 15);
+            }
         }
 
         public override void Update()
         {
             base.Update();
+
+            if (!config.showDemandInBar)
+                return;
 
             RDemand = FeatureUtil.GetCurrentRCIValue(RCIType.Residential);
             CDemand = FeatureUtil.GetCurrentRCIValue(RCIType.Commercial);
