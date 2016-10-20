@@ -30,10 +30,17 @@ namespace DemandMaster
         {
             var serializer = new XmlSerializer(typeof(ModConfiguration));
 
-            using (var reader = new StreamReader(filename))
+            try
             {
-                var config = (ModConfiguration)serializer.Deserialize(reader);
-                return config;
+                using (var reader = new StreamReader(filename))
+                {
+                    var config = (ModConfiguration)serializer.Deserialize(reader);
+                    return config;
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
     }
