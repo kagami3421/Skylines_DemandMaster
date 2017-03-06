@@ -56,18 +56,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeatureUtil.cs" />
-    <Compile Include="ModConfiguration.cs" />
-    <Compile Include="RCIButton.cs" />
-    <Compile Include="RCIMainUIPanel.cs" />
-    <Compile Include="ModDebug.cs" />
+    <Compile Include="Utli\FeatureUtil.cs" />
+    <Compile Include="Utli\IOHelper.cs" />
+    <Compile Include="Utli\LocaleManager.cs" />
+    <Compile Include="Utli\ModConfiguration.cs" />
+    <Compile Include="UI\RCIButton.cs" />
+    <Compile Include="UI\RCIMainUIPanel.cs" />
+    <Compile Include="Utli\ModDebug.cs" />
     <Compile Include="ModMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RCIAdjustRow.cs" />
-    <Compile Include="RCICheckBox.cs" />
-    <Compile Include="RCISlider.cs" />
-    <Compile Include="RCIViewRow.cs" />
-    <Compile Include="RCITitlePanel.cs" />
+    <Compile Include="UI\RCIAdjustRow.cs" />
+    <Compile Include="UI\RCICheckBox.cs" />
+    <Compile Include="UI\RCISlider.cs" />
+    <Compile Include="UI\RCIViewRow.cs" />
+    <Compile Include="UI\RCITitlePanel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -27,13 +27,13 @@ namespace DemandMaster
                 switch (value)
                 {
                     case RCIType.Residential:
-                        description = "Residential Demand (Max:100):";
+                        description = ModLocaleManager.Instance.CurrentLocale.ResdentialDemandString;
                         break;
                     case RCIType.Commercial:
-                        description = "Commercial Demand (Max:100):";
+                        description = ModLocaleManager.Instance.CurrentLocale.CommerialDemandString;
                         break;
                     case RCIType.Industrial:
-                        description = "Industrial Demand (Max:100):";
+                        description = ModLocaleManager.Instance.CurrentLocale.IndustrialDemandString;
                         break;
                 }
 

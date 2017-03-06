@@ -48,8 +48,13 @@ namespace DemandMaster
             _RCIFixed.eventClick += _RCIFixed_eventClick;
 
             _RCIFixedText.relativePosition = new Vector3(270, 0);
-            _RCIFixedText.text = "Fix Value";
+            _RCIFixedText.text = ModLocaleManager.Instance.CurrentLocale.FixValueString;
 
+            if (ConfigManager.Instance.CurrentConfig.storeDemand)
+            {
+                _RCIValueSlider.value = ConfigManager.Instance.GetStoreDemandValue(_type);
+                currentSliderValue = ConfigManager.Instance.GetStoreDemandValue(_type);
+            }
         }
 
         void _RCIValueSlider_eventValueChanged(UIComponent component, float value)
@@ -73,10 +78,16 @@ namespace DemandMaster
             base.Update();
 
             if (_RCIFixed.IsChecked)
+            {
                 FeatureUtil.SetRCIValue(_type, currentSliderValue);
+            }
+                
 
             _RCIValueSlider.value = FeatureUtil.GetCurrentRCIValue(_type);
             currentSliderValue = FeatureUtil.GetCurrentRCIValue(_type);
+
+            if (ConfigManager.Instance.CurrentConfig.storeDemand)
+                ConfigManager.Instance.SetStoreDemandValue(_type, currentSliderValue);
         }
     }
 }

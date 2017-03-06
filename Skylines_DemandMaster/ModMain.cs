@@ -18,36 +18,72 @@ namespace DemandMaster
             get { return "Demand Master"; }
         }
 
+        public void OnEnabled()
+        {
+            Albedo.Instance.EnableMod();
+        }
+
+        public void OnDisabled()
+        {
+            Albedo.Instance.DisableMod();
+        }
+
         public void OnSettingsUI(UIHelperBase helper)
         {
-            RCIButton.config = ModeConfigProcessor.Deserialize(RCIButton.configPath);
-            if (RCIButton.config == null)
-            {
-                RCIButton.config = new ModConfiguration();
-            }
-            RCIButton.SaveConfig();
-
-            UIHelperBase group = helper.AddGroup("Demand Master Settings");
-
-            group.AddCheckbox("Show RCI demand value on status bar", RCIButton.config.showDemandInBar, OnCheckShowDemandBar);
-            //group.AddCheckbox("Store RCI fixed demand value", RCIButton.config.storeDemand, OnCheckStoreFixedDemand);
-        }
-
-        private void OnCheckShowDemandBar(bool c)
-        {
-            RCIButton.config.showDemandInBar = c;
-            RCIButton.SaveConfig();
-        }
-
-        private void OnCheckStoreFixedDemand(bool c)
-        {
-            RCIButton.config.storeDemand = c;
-            RCIButton.SaveConfig();
+            Albedo.Instance.SetUpSettingUI(helper);
         }
     }
     #endregion
 
-    public class DemandMaster : LoadingExtensionBase
+    public class Albedo
+    {
+        #region Singleton
+        public static Albedo Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new Albedo();
+
+                return instance;
+            }
+        }
+        private static Albedo instance;
+        #endregion
+
+        public void EnableMod()
+        {
+            ConfigManager.Instance.LoadConfigXML();
+            ModLocaleManager.Instance.Init();
+        }
+
+        public void DisableMod()
+        {
+            ModLocaleManager.Instance.CleanUp();
+        }
+
+        public void SetUpSettingUI(UIHelperBase helper)
+        {
+            helper.AddCheckbox(ModLocaleManager.Instance.CurrentLocale.OptionShowDemandBarString, ConfigManager.Instance.CurrentConfig.showDemandInBar, OnCheckShowDemandBar);
+            helper.AddCheckbox(ModLocaleManager.Instance.CurrentLocale.OptionStoreDemandString, ConfigManager.Instance.CurrentConfig.storeDemand, OnCheckStoreFixedDemand);
+        }
+
+        private void OnCheckShowDemandBar(bool c)
+        {
+            ConfigManager.Instance.CurrentConfig.showDemandInBar = c;
+
+            ConfigManager.Instance.SaveConfigXML();
+        }
+
+        private void OnCheckStoreFixedDemand(bool c)
+        {
+            ConfigManager.Instance.CurrentConfig.storeDemand = c;
+
+            ConfigManager.Instance.SaveConfigXML();
+        }
+    }
+
+    public class DemandMasterGame : LoadingExtensionBase
     {
         /// <summary>
         /// Flag for checking DemandMaster UI is open.
@@ -76,14 +112,9 @@ namespace DemandMaster
 
         public override void OnCreated(ILoading loading)
         {
-            base.OnCreated(loading);
+            ConfigManager.Instance.LoadConfigXML();
 
-            RCIButton.config = ModeConfigProcessor.Deserialize(RCIButton.configPath);
-            if (RCIButton.config == null)
-            {
-                RCIButton.config = new ModConfiguration();
-            }
-            RCIButton.SaveConfig();
+            base.OnCreated(loading);
         }
 
         public override void OnLevelLoaded(LoadMode mode)
@@ -111,6 +142,8 @@ namespace DemandMaster
                 return;
 
             UnRegistorUI();
+
+            ConfigManager.Instance.SaveConfigXML();
         }
 
         /********** Custom Methods **********/

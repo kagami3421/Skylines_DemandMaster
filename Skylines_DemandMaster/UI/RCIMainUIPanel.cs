@@ -65,13 +65,13 @@ namespace DemandMaster
                 switch (_type)
                 {
                     case RCIType.Residential:
-                        _Description.text = "Residential Demand Adjust(0~100):";
+                        _Description.text = ModLocaleManager.Instance.CurrentLocale.ResdentialAdjustString;
                         break;
                     case RCIType.Commercial:
-                        _Description.text = "Commercial Demand Adjust(0~100):";
+                        _Description.text = ModLocaleManager.Instance.CurrentLocale.CommerialAdjustString;
                         break;
                     case RCIType.Industrial:
-                        _Description.text = "Industrial Demand Adjust(0~100):";
+                        _Description.text = ModLocaleManager.Instance.CurrentLocale.IndustrialAdjustString;
                         break;
                 }
 
