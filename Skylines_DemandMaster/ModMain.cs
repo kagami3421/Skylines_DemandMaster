@@ -131,7 +131,7 @@ namespace DemandMaster
             if (oGameNativeUI != null)
                 RegisterDemandUI();
             else
-                ModDebug.Error("Can't Find UI View !");
+                Debug.LogError("Can't Find UI View !");
         }
 
         public override void OnLevelUnloading()
@@ -188,13 +188,13 @@ namespace DemandMaster
             bIsUIOpen = !bIsUIOpen;
 
 #if DEBUG
-            ModDebug.Log("R:" + ZoneManager.instance.m_residentialDemand);
-            ModDebug.Log("C:" + ZoneManager.instance.m_commercialDemand);
-            ModDebug.Log("I:" + ZoneManager.instance.m_workplaceDemand);
+            Debug.Log("R:" + ZoneManager.instance.m_residentialDemand);
+            Debug.Log("C:" + ZoneManager.instance.m_commercialDemand);
+            Debug.Log("I:" + ZoneManager.instance.m_workplaceDemand);
 
-            ModDebug.Log("AR:" + ZoneManager.instance.m_actualResidentialDemand);
-            ModDebug.Log("AC:" + ZoneManager.instance.m_actualCommercialDemand);
-            ModDebug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
+            Debug.Log("AR:" + ZoneManager.instance.m_actualResidentialDemand);
+            Debug.Log("AC:" + ZoneManager.instance.m_actualCommercialDemand);
+            Debug.Log("AI:" + ZoneManager.instance.m_actualWorkplaceDemand);
 #endif
 
             oDemandPanelComponent.isVisible = bIsUIOpen;

@@ -62,7 +62,6 @@
     <Compile Include="Utli\ModConfiguration.cs" />
     <Compile Include="UI\RCIButton.cs" />
     <Compile Include="UI\RCIMainUIPanel.cs" />
-    <Compile Include="Utli\ModDebug.cs" />
     <Compile Include="ModMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\RCIAdjustRow.cs" />

@@ -1,6 +1,6 @@
 ﻿#define HARD
 
-using ColossalFramework;
+using UnityEngine;
 
 namespace DemandMaster
 {
@@ -10,9 +10,9 @@ namespace DemandMaster
         {
             int _tmp = 0;
 
-            if (Singleton<ZoneManager>.exists)
+            if (ColossalFramework.Singleton<ZoneManager>.exists)
             {
-                ZoneManager _ZoneManager = Singleton<ZoneManager>.instance;
+                ZoneManager _ZoneManager = ColossalFramework.Singleton<ZoneManager>.instance;
 
                 switch (_type)
                 {
@@ -29,7 +29,7 @@ namespace DemandMaster
             }
             else
             {
-                ModDebug.Error("Can't find ZoneManager !");
+                Debug.LogError("Can't find ZoneManager !");
             }
 
             return _tmp;
@@ -37,9 +37,9 @@ namespace DemandMaster
 
         public static void SetRCIValue(RCIType _type, int value)
         {
-            if (Singleton<ZoneManager>.exists)
+            if (ColossalFramework.Singleton<ZoneManager>.exists)
             {
-                ZoneManager _ZoneManager = Singleton<ZoneManager>.instance;
+                ZoneManager _ZoneManager = ColossalFramework.Singleton<ZoneManager>.instance;
 
                 switch (_type)
                 {
@@ -71,7 +71,7 @@ namespace DemandMaster
             }
             else
             {
-                ModDebug.Error("Can't find ZoneManager !");
+                Debug.LogError("Can't find ZoneManager !");
             }
         }
     }

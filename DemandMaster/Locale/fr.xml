@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleLabel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<LanguageCode>fr</LanguageCode>
+<OptionShowDemandBarString>Affiche la demande RCI dans la barre de statut</OptionShowDemandBarString>
+<OptionStoreDemandString>Enregistre la valeur de la demande RCI</OptionStoreDemandString>
+<DemandMasterOpenButtonTooltip>Cliquez pour ouvrir DemandMaster !</DemandMasterOpenButtonTooltip>
+<FixValueString>Fixer la valeur</FixValueString>
+<ResdentialDemandString>Demande Résidentielle (Max:100):</ResdentialDemandString>
+<CommerialDemandString>Demande Commerciale (Max:100):</CommerialDemandString>
+<IndustrialDemandString>Demande Industrielle (Max:100):</IndustrialDemandString>
+<ResdentialAdjustString>Ajustement de la demande Résidentielle(0~100):</ResdentialAdjustString>
+<CommerialAdjustString>Ajustement de la demande Commerciale(0~100):</CommerialAdjustString>
+<IndustrialAdjustString>Ajustement de la demande Industrielle(0~100):</IndustrialAdjustString>
+</LocaleLabel>

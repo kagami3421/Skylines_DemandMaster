@@ -62,7 +62,7 @@ namespace DemandMaster
             FeatureUtil.SetRCIValue(_type, (int)value);
 
 #if DEBUG
-            ModDebug.Log(_type.ToString() + "------" +value.ToString());
+            Debug.Log(_type.ToString() + "------" +value.ToString());
 #endif
         }
 

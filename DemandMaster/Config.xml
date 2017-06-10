@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <showDemandInBar>false</showDemandInBar>
+  <storeDemand>false</storeDemand>
+  <storedResidentialDemand>86</storedResidentialDemand>
+  <storedCommercialDemand>2</storedCommercialDemand>
+  <storedIndustrialDemand>14</storedIndustrialDemand>
+  <LCIDCode>0</LCIDCode>
+</Configuration>

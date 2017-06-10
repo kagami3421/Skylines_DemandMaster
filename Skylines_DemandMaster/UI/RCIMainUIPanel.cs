@@ -81,8 +81,8 @@ namespace DemandMaster
             }
 
 #if DEBUG
-            ModDebug.Log(_ViewRowArray.Count);
-            ModDebug.Log(_AdjustRowArray.Count);
+            Debug.Log(_ViewRowArray.Count);
+            Debug.Log(_AdjustRowArray.Count);
 #endif
         }
     }

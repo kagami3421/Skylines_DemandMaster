@@ -1,10 +1,8 @@
 ﻿using ColossalFramework.Globalization;
-using ColossalFramework.UI;
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using System;
+using UnityEngine;
 
 namespace DemandMaster
 {
@@ -77,6 +75,11 @@ namespace DemandMaster
         {
             string[] fileNames = Directory.GetFiles(IOHelper.Instance.FullLocaleFolderPath, "*.xml");
 
+            for (int i = 0; i < fileNames.Length; i++)
+            {
+                Debug.Log(fileNames);
+            }
+
             if (fileNames.Length == 0)
                 CreateDeafultLanguageFile();
             else
@@ -94,7 +97,7 @@ namespace DemandMaster
                     if (result != null)
                     {
                         if (locales.ContainsKey(result.LanguageCode))
-                            ModDebug.Error("There already exists the same language file !");
+                            Debug.LogError("There already exists the same language file !");
                         else
                             locales.Add(result.LanguageCode, result);
                     }

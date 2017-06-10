@@ -1,20 +1,10 @@
-﻿using ColossalFramework;
-using ColossalFramework.Plugins;
+﻿using ColossalFramework.Plugins;
 using System.IO;
-using UnityEngine;
 
 namespace DemandMaster
 {
     public class IOHelper
     {
-        private readonly string mainFolderName = "DemandMaster";
-        private readonly string block = "/";
-
-        private readonly string configFileName = "Config.xml";
-
-        private readonly string localeFolderName = "Locale";
-        //private readonly string localeFileExtension = ".xml";
-
         #region Singleton
         public static IOHelper Instance
         {
@@ -28,6 +18,14 @@ namespace DemandMaster
         }
         private static IOHelper instance;
         #endregion
+
+        private readonly string mainFolderName = "DemandMaster";
+        private readonly string block = "/";
+
+        private readonly string configFileName = "Config.xml";
+
+        private readonly string localeFolderName = "Locale";
+        //private readonly string localeFileExtension = ".xml";
 
         public string FullConfigPath
         {
@@ -86,7 +84,7 @@ namespace DemandMaster
         {
             if (string.IsNullOrEmpty(WorkshopFilePath))
             {
-                PluginManager pluginManager = Singleton<PluginManager>.instance;
+                PluginManager pluginManager = ColossalFramework.Singleton<PluginManager>.instance;
 
                 foreach (PluginManager.PluginInfo pluginInfo in pluginManager.GetPluginsInfo())
                 {

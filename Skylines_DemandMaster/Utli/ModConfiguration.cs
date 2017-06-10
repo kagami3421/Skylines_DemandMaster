@@ -17,6 +17,7 @@ namespace DemandMaster
 
     public class ConfigManager
     {
+
         #region Singleton
         public static ConfigManager Instance
         {

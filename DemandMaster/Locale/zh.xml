@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleLabel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LanguageCode>zh</LanguageCode>
+  <OptionShowDemandBarString>在需求小圖表中顯示需求量</OptionShowDemandBarString>
+  <OptionStoreDemandString>動態儲存需求量</OptionStoreDemandString>
+  <DemandMasterOpenButtonTooltip>點擊開啟 Demand Master !</DemandMasterOpenButtonTooltip>
+  <FixValueString>鎖定需求量</FixValueString>
+  <ResdentialDemandString>住宅需求 (最大100):</ResdentialDemandString>
+  <CommerialDemandString>商業需求 (最大100):</CommerialDemandString>
+  <IndustrialDemandString>工業需求 (最大100):</IndustrialDemandString>
+  <ResdentialAdjustString>住宅需求調整 (0~100):</ResdentialAdjustString>
+  <CommerialAdjustString>商業需求調整 (0~100):</CommerialAdjustString>
+  <IndustrialAdjustString>工業需求調整 (0~100):</IndustrialAdjustString>
+</LocaleLabel>
