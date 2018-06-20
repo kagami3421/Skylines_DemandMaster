@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleLabel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LanguageCode>jp</LanguageCode>
+  <OptionShowDemandBarString>RCIのアイコンに値を表示する</OptionShowDemandBarString>
+  <OptionStoreDemandString>RCIを動的に保存する</OptionStoreDemandString>
+  <DemandMasterOpenButtonTooltip>デマンドマスターを表示する</DemandMasterOpenButtonTooltip>
+  <FixValueString>デマンドを固定する</FixValueString>
+  <ResdentialDemandString>住宅のデマンド (最大100):</ResdentialDemandString>
+  <CommerialDemandString>商業のデマンド (最大100):</CommerialDemandString>
+  <IndustrialDemandString>工業のデマンド (最大100):</IndustrialDemandString>
+  <ResdentialAdjustString>住宅のデマンドを調整する (0~100):</ResdentialAdjustString>
+  <CommerialAdjustString>商業のデマンドを調整する (0~100):</CommerialAdjustString>
+  <IndustrialAdjustString>工業のデマンドを調整する (0~100):</IndustrialAdjustString>
+</LocaleLabel>

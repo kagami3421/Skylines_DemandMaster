@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LocaleLabel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LanguageCode>ru</LanguageCode>
+  <OptionShowDemandBarString>Показать значение потребности RCI в строке состояния</OptionShowDemandBarString>
+  <OptionStoreDemandString>Сохранить значение спроса на RCI</OptionStoreDemandString>
+  <DemandMasterOpenButtonTooltip>Нажмите, чтобы открыть DemandMaster</DemandMasterOpenButtonTooltip>
+  <FixValueString>Закрепить спрос</FixValueString>
+  <ResdentialDemandString>Спрос на жилые(Residential) районы. (Макс:100):</ResdentialDemandString>
+  <CommerialDemandString>Спрос на коммерческие(Commercial) районы. (Макс:100):</CommerialDemandString>
+  <IndustrialDemandString>Спрос на индустриальные(Industrial) районы. (Макс:100):</IndustrialDemandString>
+  <ResdentialAdjustString>Регулировка спроса на жилые районы. (0~100):</ResdentialAdjustString>
+  <CommerialAdjustString>Регулировка спроса на коммерческие районы. (0~100):</CommerialAdjustString>
+  <IndustrialAdjustString>Регулировка спроса на индустриальные районы. (0~100):</IndustrialAdjustString>
+</LocaleLabel>
